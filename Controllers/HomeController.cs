@@ -17,7 +17,8 @@ namespace InfoClimaWeb.Controllers
         //para las consultas a la api de InfoCLima
         private readonly ServiceClient _client = new ServiceClient();
         private readonly ILogger<HomeController> _logger;
-
+        
+        //Para optener las variables de entorno con la url de la api IinfoClima se inicializa y luego se inyecta la interfaz de configuracion 
         private readonly IConfiguration _configuration;
         public HomeController(ILogger<HomeController> logger, ServiceClient client, IConfiguration configuration)
         {

@@ -69,6 +69,7 @@
 </div>
 <script src="~/js/plugins/dataTables/datatables.min.js"></script>
 <script>
+    //Optine las ciudades guardadas
     GetCiudades();
 
     function GetCiudades() {
@@ -88,16 +89,19 @@
             }
         });
     }
-
+    //Al hacer click obtiene la info y registro de climas 
     $("#btnGetclima").on("click", function () {
-       var table = $('#HistoricoClimas').DataTable()
+        //Borro el datatable previo
+        var table = $('#HistoricoClimas').DataTable()
             .clear()
             .draw();
         var ciudad = $("#Ciudad").val();
         var historico = false;
+        //si esta seleccionado historico lo toma como true para llenar la tabla
         if ($('#historico').is(':checked')) {
             historico = true;
         }
+        //get que conecta con el controller (para el uso completo de MVC. Tambien se puede consultar directamente la API InfoCLima)
         $.ajax({
             type: "GET",
             url: "Home/getClimas",
@@ -107,10 +111,12 @@
             },
             dataType: "json",
             success: function (response) {
+                //LLeno la info con el ultimo clima consultado
                 $("#lblCiudad").html(response[0]["ciudad"] + ", " + response[0]["pais"]);
                 $("#lblClima").html(response[0]["clima"]);
                 $("#lblTermica").html(response[0]["termica"]);
 
+                //si solicito el historioco lleno el datatable
                 if (historico) {
 
                     $('#HistoricoClimas').DataTable().destroy();
@@ -140,14 +146,14 @@
                                 }
                             }
                         ],
-                        data : response,
+                        data: response,
                         columns: [
                             { data: "pais" },
                             { data: "ciudad" },
                             { data: "clima" },
                             { data: "termica" }
                         ]
-                                            
+
                     });
                     $('#HistoricoClimas').DataTable().draw();
                 }

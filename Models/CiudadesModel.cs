@@ -1,6 +1,6 @@
 
 using System;
-
+//Modelo de que devuelve la api para la consulta de ciudades
 namespace InfoClimaWeb.Models
 {
     public class CiudadesModel

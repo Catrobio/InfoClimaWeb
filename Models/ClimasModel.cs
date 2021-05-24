@@ -1,5 +1,5 @@
 using System;
-
+//Modelo de que devuelve la api para la consulta de Climas
 namespace InfoClimaWeb.Models
 {
     public class ClimasModel
